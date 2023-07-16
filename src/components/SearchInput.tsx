@@ -1,18 +1,20 @@
 import { useRef } from 'react';
 
 import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
+
+// React icons
 import { BsSearch } from 'react-icons/bs';
 
-interface Props {
+interface SearchInputProps {
   onSearch: (searchText: string) => void;
 }
 
-const SearchInput = ({ onSearch }: Props) => {
+const SearchInput = ({ onSearch }: SearchInputProps) => {
   const searchRef = useRef<HTMLInputElement>(null);
 
   return (
     <form
-      onSubmit={event => {
+      onSubmit={(event) => {
         event.preventDefault();
 
         if (searchRef.current) {

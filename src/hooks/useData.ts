@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
-import apiClient from '../services/api-client';
+
 import { AxiosRequestConfig, CanceledError } from 'axios';
+
+import apiClient from '../services/api-client';
 
 export interface FetchResponse<T> {
   count: number;
@@ -10,6 +12,7 @@ export interface FetchResponse<T> {
 const useGenres = <T>(
   endpoint: string,
   requestConfig?: AxiosRequestConfig,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   deps?: any[]
 ) => {
   const [data, setData] = useState<T[]>([]);
@@ -24,13 +27,13 @@ const useGenres = <T>(
       apiClient
         .get<FetchResponse<T>>(endpoint, {
           signal: controller.signal,
-          ...requestConfig
+          ...requestConfig,
         })
-        .then(res => {
+        .then((res) => {
           setData(res.data.results);
           setIsLoading(false);
         })
-        .catch(err => {
+        .catch((err) => {
           if (err instanceof CanceledError) return;
           setError(err.message);
           setIsLoading(false);
@@ -38,6 +41,7 @@ const useGenres = <T>(
 
       return () => controller.abort();
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     deps ? [...deps] : []
   );
 

@@ -1,11 +1,12 @@
 import { ReactNode } from 'react';
+
 import { Box } from '@chakra-ui/react';
 
-interface Props {
+interface GameCardContainerProps {
   children: ReactNode;
 }
 
-const GameCardContainer = ({ children }: Props) => {
+const GameCardContainer = ({ children }: GameCardContainerProps) => {
   return (
     <Box width="100%" borderRadius={10} overflow="hidden">
       {children}

@@ -3,23 +3,26 @@ import { Card, CardBody, HStack, Heading, Image } from '@chakra-ui/react';
 // Components
 import PlatformIconList from './PlatformIconList';
 import CriticScore from './CriticScore';
-
-import { Game } from '../hooks/useGames';
-import getCroppedImageUrl from '../services/image-urls';
 import Emoji from './Emoji';
 
-interface Props {
+// Hooks
+import { Game } from '../hooks/useGames';
+
+// Service
+import getCroppedImageUrl from '../services/image-urls';
+
+interface GameCardProps {
   game: Game;
 }
 
-const GameCard = ({ game }: Props) => {
+const GameCard = ({ game }: GameCardProps) => {
   return (
     <Card>
       <Image src={getCroppedImageUrl(game.background_image)} />
       <CardBody>
         <HStack justifyContent="space-between" marginBottom={3}>
           <PlatformIconList
-            platforms={game.parent_platforms.map(p => p.platform)}
+            platforms={game.parent_platforms.map((p) => p.platform)}
           />
           <CriticScore score={game.metacritic} />
         </HStack>

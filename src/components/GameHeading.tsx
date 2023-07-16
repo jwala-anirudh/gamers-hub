@@ -1,11 +1,13 @@
 import { Heading } from '@chakra-ui/react';
-import { GameQuery } from '../App';
 
-interface Props {
+// Models
+import { GameQuery } from '../models/GameQuery';
+
+interface GameHeadingProps {
   gameQuery: GameQuery;
 }
 
-const GameHeading = ({ gameQuery }: Props) => {
+const GameHeading = ({ gameQuery }: GameHeadingProps) => {
   const heading = `${gameQuery.platform?.name || ''} ${
     gameQuery.genre?.name || ''
   } Games`;
